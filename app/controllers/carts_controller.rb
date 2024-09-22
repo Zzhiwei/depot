@@ -54,9 +54,10 @@ class CartsController < ApplicationController
     session[:cart_id] = nil
     respond_to do |format|
       # notice is part of rails flash
-      @notice = "Your cart is currently empty"
-      @cart = nil
-      format.turbo_stream
+      format.turbo_stream {
+        @notice = "Your cart is currently empty"
+        @cart = nil
+      }
       format.html { redirect_to store_index_url,
                                 notice: 'Your cart is currently empty' }
       format.json { head :no_content }
