@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new(pay_type: Order.pay_types.keys[0])
+    @order = Order.new
   end
 
   # GET /orders/1/edit
