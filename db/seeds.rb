@@ -6,8 +6,21 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit https://pragprog.com/titles/rails7 for more book information.
 #---
-# encoding: utf-8
-Product.delete_all
+# encoding: utf-
+
+# Get all the models in the application
+models = ActiveRecord::Base.descendants
+puts models
+# Iterate through each model and delete all records
+models.each do |model|
+  begin
+    model.delete_all
+    puts "Deleted all records from #{model.name} table."
+  rescue => e
+    puts "Error deleting records from #{model.name} table: #{e.message}"
+  end
+end
+
 Product.create!(title: 'Docker for Rails Developers',
                 description:
                   %{<p>
