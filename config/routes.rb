@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+
+  # we’ll shorten the URL that the user has to enter (by removing the /index part)
+  # get "admin/index"
+  get 'admin' => 'admin#index'
+
+  controller :sessions do
+    get 'login' => :new #e.g. /login -> new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  get 'sessions/create'
+  get 'sessions/destroy'
   resources :users
   resources :orders
   resources :line_items
